@@ -10,7 +10,7 @@ namespace ChunkingLibrary.Tests.Integration;
 public class SmokeTests(ITestOutputHelper output)
 {
     private static readonly string SpecFilePath = Path.Combine(
-        AppContext.BaseDirectory, "..", "..", "..", "..", "..", "ODC_Chunking_Library.md");
+        AppContext.BaseDirectory, "..", "..", "..", "..", "..", "docs", "ODC_Chunking_Library.md");
 
     private static readonly string TestFilePath = Path.Combine(
         AppContext.BaseDirectory, "..", "..", "..", "..", "..", "TestFile.txt");
