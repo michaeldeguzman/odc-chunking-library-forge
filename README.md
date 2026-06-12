@@ -43,7 +43,13 @@ ChunkingLibrary is built specifically for documents that combine prose with code
 
 Install **ChunkingLibrary** from the OutSystems Forge into your ODC environment, then add a reference to it from Service Studio.
 
-### Option 2: Build from source
+### Option 2: Download from GitHub Releases
+
+1. Download `ChunkingLibrary.zip` from this repository's [Releases](../../releases) page.
+2. In **ODC Portal**, go to **External Logic → Upload** and upload the zip. The component registers as **ChunkingLibrary** with four Service Actions.
+3. In Service Studio, add a reference to the ChunkingLibrary module and call any of the four actions from your logic.
+
+### Option 3: Build from source
 
 1. Clone this repository.
 2. Build and package the External Logic library:
@@ -54,7 +60,7 @@ Install **ChunkingLibrary** from the OutSystems Forge into your ODC environment,
    cd publish && zip -r ../ChunkingLibrary.zip .
    ```
 
-3. In **ODC Portal**, go to **External Logic → Upload** and upload `ChunkingLibrary.zip`. The component registers as **ChunkingLibrary** with four Service Actions.
+3. In **ODC Portal**, go to **External Logic → Upload** and upload `ChunkingLibrary.zip`.
 4. In Service Studio, add a reference to the ChunkingLibrary module and call any of the four actions from your logic.
 
 ---
