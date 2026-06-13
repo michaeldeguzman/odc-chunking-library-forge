@@ -69,7 +69,7 @@ Install **ChunkingLibrary** from the OutSystems Forge into your ODC environment,
 
 | Action | Best for | Strategy |
 |---|---|---|
-| [`SplitByCharacter`](#splitbycharacter) | Plain, unstructured text (logs, transcripts) | Fixed-size sliding window, word-boundary aware |
+| [`SplitByCharacter`](#splitbycharacter) | Plain, unstructured text (logs, transcripts) | Fixed-size sliding window, mechanical character cuts |
 | [`SplitRecursively`](#splitrecursively) | General-purpose text/Markdown | Recursive separator cascade (paragraph → line → sentence → word) |
 | [`SplitMarkdown`](#splitmarkdown) | Markdown with headings, code blocks, tables | Heading-aware, atomic code blocks/tables, breadcrumb metadata |
 | [`SplitBySentence`](#splitbysentence) | FAQs, definitions, short Q&A | Sentence-aware packing with optional sentence-count cap |
@@ -97,7 +97,7 @@ Splits text into fixed-size character-based chunks with optional overlap. The si
 | `maxTotalChars` | Integer | Maximum allowed input length. Throws an error if exceeded — protects against runaway inputs. |
 | `documentId` | Text | Identifier stamped onto every chunk (used in `ChunkId` and metadata). |
 
-Cuts land on word boundaries (`LastIndexOf(' ')`) whenever possible — a hard character cut only occurs when no space exists within the chunk window (e.g. a long URL).
+This is a mechanical sliding window: each chunk is exactly `chunkSize` characters (except the last), with no word- or sentence-boundary awareness. If your content has meaningful structure, `SplitRecursively` or `SplitMarkdown` produce more coherent chunks.
 
 ---
 
@@ -237,7 +237,7 @@ Output (excerpt):
 
 ## Parameter Guidelines
 
-- **`chunkSize`**: always use `1` or greater — typical values are 500–2000 characters depending on your embedding model's context window.
+- **`chunkSize`**: must be `1` or greater — typical values are 500–2000 characters depending on your embedding model's context window. A value of `0` or less throws a descriptive `ArgumentException`.
 - **`overlapSize`**: must be `0` or greater and strictly less than `chunkSize`. A common starting point is roughly `chunkSize / 5` (e.g. 1000 / 200).
 - **`maxTotalChars`**: must be at least the length of your input text. A safe default is `200,000`; raise it for larger documents.
 - **`documentId`**: always provide a non-empty value — it's used to build `ChunkId` (e.g. `DOC-001-0001`). An empty value produces malformed IDs like `-0001`.

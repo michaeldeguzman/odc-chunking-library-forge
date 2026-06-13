@@ -29,6 +29,20 @@ public class MarkdownSplitterTests
             MarkdownSplitter.SplitMarkdown("# Hello\n\nContent.", 10, 10, false, false, false, 1_000_000, "doc"));
     }
 
+    [Fact]
+    public void ChunkSizeZero_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            MarkdownSplitter.SplitMarkdown("# Hello\n\nContent.", 0, -1, false, false, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
+    public void ChunkSizeNegative_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            MarkdownSplitter.SplitMarkdown("# Hello\n\nContent.", -5, -10, false, false, false, 1_000_000, "doc"));
+    }
+
     // ── Heading structure ────────────────────────────────────────────────────
 
     [Fact]
