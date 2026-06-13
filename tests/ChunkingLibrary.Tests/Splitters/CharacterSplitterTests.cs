@@ -58,6 +58,20 @@ public class CharacterSplitterTests
     }
 
     [Fact]
+    public void ChunkSizeZero_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            CharacterSplitter.SplitByCharacter("Hello world", 0, -1, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
+    public void ChunkSizeNegative_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            CharacterSplitter.SplitByCharacter("Hello world", -5, -10, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
     public void BasicSplit_ProducesExpectedChunks()
     {
         // 30 chars split into chunks of 10 with no overlap → 3 chunks

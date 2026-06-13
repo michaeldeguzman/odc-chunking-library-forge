@@ -20,6 +20,11 @@ public static class MarkdownSplitter
             throw new ArgumentException(
                 $"Input text length ({markdown.Length}) exceeds maxTotalChars limit ({maxTotalChars}).");
 
+        // Guard: chunkSize
+        if (chunkSize <= 0)
+            throw new ArgumentException(
+                $"chunkSize ({chunkSize}) must be greater than zero.");
+
         // Guard: overlapSize
         if (overlapSize >= chunkSize)
             throw new ArgumentException(

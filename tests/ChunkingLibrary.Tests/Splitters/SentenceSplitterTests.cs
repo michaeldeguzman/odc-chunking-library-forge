@@ -28,6 +28,20 @@ public class SentenceSplitterTests
     }
 
     [Fact]
+    public void ChunkSizeZero_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            SentenceSplitter.SplitBySentence("Hello world.", 0, -1, 0, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
+    public void ChunkSizeNegative_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            SentenceSplitter.SplitBySentence("Hello world.", -5, -10, 0, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
     public void NegativeSentencesPerChunk_Throws()
     {
         Assert.Throws<ArgumentException>(() =>

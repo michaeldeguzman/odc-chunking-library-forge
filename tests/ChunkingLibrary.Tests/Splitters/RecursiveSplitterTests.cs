@@ -27,6 +27,20 @@ public class RecursiveSplitterTests
     }
 
     [Fact]
+    public void ChunkSizeZero_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            RecursiveSplitter.SplitRecursively("Hello world", 0, -1, null, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
+    public void ChunkSizeNegative_Throws()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            RecursiveSplitter.SplitRecursively("Hello world", -5, -10, null, false, 1_000_000, "doc"));
+    }
+
+    [Fact]
     public void TextShorterThanChunkSize_ReturnsSingleChunk()
     {
         var result = RecursiveSplitter.SplitRecursively("Hello world", 100, 0, null, false, 1_000_000, "doc");
