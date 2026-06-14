@@ -168,6 +168,8 @@ Fenced code blocks and tables are treated as atomic units, just as in `SplitRecu
 
 > **Note on `sentencesPerChunk = 1`:** overlap is automatically skipped in this mode (regardless of `overlapSize`), since character-based overlap against a single short sentence would either duplicate the previous chunk or produce an incoherent fragment. Each chunk starts at a clean sentence boundary.
 
+> **Note on `normalizeWhitespace` with Markdown input:** leave this `false` (the default) when splitting Markdown. A blank line (`\n\n`) is the only signal this strategy uses to treat a heading as its own boundary — normalizing whitespace removes that signal, so headings get merged into the surrounding sentence or list item instead of forming their own chunk. Reserve `normalizeWhitespace=true` for prose with no structural whitespace.
+
 ---
 
 ## Output Structure
