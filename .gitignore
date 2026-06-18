@@ -17,3 +17,10 @@ Thumbs.db
 ## Publish output
 publish/
 *.zip
+
+## Secrets
+.env
+.env.local
+
+## Local history (VS Code extension — may contain sensitive file snapshots)
+.history/
